@@ -1,0 +1,174 @@
+<!--
+  Project Scope
+
+  This project aims to recreate the Twisty Timer app on android.
+  An app designed to scramble, time, and plot your times and statistics.
+  The graphs will not only have the raw times but also the Average of 5, and Average of 12s.
+  These are not normal averages, but averages of the middle times, with the fastest and slowest
+  times removed from the sum. For Ao5 two times are removed, and for Ao12 four times are removed.
+  I made it responsive so the axes and labels move and scale with the graph.
+-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<head>
+  <title> LMAO </title>
+  <body>
+    <div>
+      <canvas id="CubeTimer" class="chartjs-render-monitor"></canvas>
+    </div>
+    <script>
+      
+      let Ao5Length = 5, Ao12Length = 12;
+      var rawTimes = [
+          51.14,33.22,56.12,29.40,48.70,52.02,41.64,33.82,43.05,47.24,
+          34.88,36.55,36.29,37.63,38.03,51.68,44.00,40.82,43.99,40.37,
+          50.96,42.96,40.77,35.53,38.98,37.72,42.29,49.81,39.25,55.25
+        ];
+      var Ao5 = [];
+      var Ao12 = [];
+      var xLabels = [];
+
+
+      //CALCULATING AVERAGE OF 5
+      //calcAo5();
+      for(let i = 0;i<rawTimes.length;i++) {
+        let rolling5Average;
+        xLabels.push(i);
+
+        //CREATING TEMPORARY ARRAY TO ISOLATE THE 5 SOLVE TIMES
+        if(i >= Ao5Length - 1){
+          var tempAo5Array = [];
+
+          for(let b = 0;b<Ao5Length;b++){
+            tempAo5Array.push(rawTimes[i-b]);
+          }
+          let tempFastest = 99;
+          let tempSlowest = 0;
+
+          //FINDING WHICH TWO TIMES NEED TO BE REMOVED
+          for(let num = 0; num < Ao5Length; num++){
+            if (tempAo5Array[num]<tempFastest) {
+              tempFastest = tempAo5Array[num];
+            }
+            if(tempAo5Array[num] > tempSlowest) {
+              tempSlowest = tempAo5Array[num];
+            }
+          }
+          
+          //REMOVING THE SLOWEST AND FASTEST TIMES FROM THE TEMP ARRAY
+          for(let a = 0;a<Ao5Length;a++){
+            if(tempAo5Array[a] == tempSlowest){
+              tempAo5Array[a] = 0;
+            };
+            if(tempAo5Array[a] == tempFastest) {
+              tempAo5Array[a] = 0;
+            };
+          }
+
+          //FINALLY CALCULATING AND GRAPHING THE AVERAGE OF THE PAST 5 TERMS
+          let tempAverageSum = 0;
+          for(let c = 0;c<tempAo5Array.length;c++){
+            if(tempAo5Array[c] != 0)
+            tempAverageSum += tempAo5Array[c];
+          }
+          rolling5Average = tempAverageSum / 3;
+          
+        }
+        Ao5.push(rolling5Average);
+      };
+
+
+
+
+      //CALCULATING AVERAGE OF 12
+      for(let i = 0;i<rawTimes.length;i++) {
+        let rolling12Average;
+
+        //CREATING TEMPORARY ARRAY TO ISOLATE THE 12 SOLVE TIMES
+        var tempAo12Array = [];
+        if(i>Ao12Length-4){
+          for(let b = 0;b<Ao12Length;b++){
+            tempAo12Array.push(rawTimes[i-b]);
+          }
+
+          let tempFastest = 99;
+          let tempSlowest = 0;
+          let tempSecondFastest = 99;
+          let tempSecondSlowest = 0;
+
+          //FINDING WHICH FOUR TIMES NEED TO BE REMOVED
+          for(let num = 0; num < Ao12Length-1; num++){
+            if (tempAo12Array[num] < tempFastest) {
+              tempFastest = tempAo12Array[num];
+            } else if(tempAo12Array[num] > tempSlowest) {
+              tempSlowest = tempAo12Array[num];
+            }
+          }
+          for(let num = 0; num < Ao12Length-1; num++){
+            if ((tempAo12Array[num] < tempSecondFastest)&&(tempAo12Array[num] != tempFastest)) {
+              tempSecondFastest = tempAo12Array[num];
+            } else if((tempAo12Array[num] > tempSecondSlowest)&&(tempAo12Array[num] != tempSlowest)) {
+              tempSecondSlowest = tempAo12Array[num];
+            }
+          }
+
+          
+          //REMOVING THE SLOWEST AND FASTEST TIMES FROM THE TEMP ARRAY
+          for(let a = 0;a<Ao12Length;a++){
+            if(tempAo12Array[a] == tempSlowest){
+              tempAo12Array[a] = 0;
+            }else if(tempAo12Array[a] == tempFastest) {
+              tempAo12Array[a] = 0;
+            }else if(tempAo12Array[a] == tempSecondFastest) {
+              tempAo12Array[a] = 0;
+            }else if(tempAo12Array[a] == tempSecondSlowest) {
+              tempAo12Array[a] = 0;
+            };
+          }
+
+          //FINALLY CALCULATING AND GRAPHING THE AVERAGE OF THE PAST 5 TERMS
+          let tempAverageSum = 0;
+          for(let c = 0;c<tempAo12Array.length;c++){
+            if(tempAo12Array[c] != 0)
+            tempAverageSum += tempAo12Array[c];
+          }
+          rolling12Average = tempAverageSum / 8;
+          
+        }
+        Ao12.push(rolling12Average);
+      };
+      
+
+
+      var context = document.getElementById('CubeTimer').getContext('2d');
+      var CubeTimer = new Chart(context, {
+        type: 'line',
+        data: {
+          labels: xLabels,
+          datasets: [{
+            lineTension: 0.15,
+            label: 'Solve Times',
+            borderColor: 'rgb(255, 102, 102)',
+            data: rawTimes,
+          },
+          
+          {
+            lineTension: 0.15,
+            label: 'Ao5',
+            borderColor: 'rgb(153, 204, 255)',
+            data: Ao5,
+          },
+          
+          {
+            lineTension: 0.15,
+            label: 'Ao12',
+            borderColor: 'rgb(120, 180, 120)',
+            data: Ao12,
+          }
+          ]
+        }
+      });
+    </script>
+  </body>
+</head>
