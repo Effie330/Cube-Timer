@@ -1,0 +1,24 @@
+{
+  "name": "cube-timer",
+  "version": "0.0.2",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Effie330/Cube-Timer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Effie330/Cube-Timer/issues"
+  },
+  "homepage": "https://github.com/Effie330/Cube-Timer#readme",
+  "devDependencies": {
+    "electron": "^16.0.8"
+  }
+}
