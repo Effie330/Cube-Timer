@@ -11,16 +11,17 @@
   <meta name="viewport" content="width=device-width">
   <title>Your Solve Times</title>
   <link rel="stylesheet" href="styles.css">
-  <nav>
-    <ul>
-      <li><a href="graphTab.html">Graph</a></li>
-      <li><a href="timerTab.html">Timer</a></li>
-      <li><a href="solveTimesTab.html">Solve Times</a></li>
-    </ul>
-  </nav>
+  <header>
+    <nav>
+      <ul class="navLinks">
+        <li><a href="graphTab.html" target="_blank">Graph</a></li>
+        <li><a href="timerTab.html">Timer</a></li>
+        <li><a href="solveTimesTab.html">Solve Times</a></li>
+      </ul>
+    </nav>
+  </header>
 </head>
 <body>
-  <h1>THIS IS A TEST</h1>
   <div>
     <canvas id="CubeTimer" class="chartjs-render-monitor"></canvas>
   </div>
@@ -297,6 +298,6 @@
     <div id="changeScramble">
       <h1></h1>
     </div>
-    <button onClick="getScramble()", class="btn", class="align-center">New Scramble</button>
+    <button onClick="getScramble()", class="btn">New Scramble</button>
   </div>
 </body>
