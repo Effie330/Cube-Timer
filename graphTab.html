@@ -22,6 +22,9 @@
   </header>
 </head>
 <body>
+  <div class="gradient">
+
+  </div>
   <div>
     <canvas id="CubeTimer" class="chartjs-render-monitor"></canvas>
   </div>
@@ -33,7 +36,7 @@
       FileReader.readAsText(solveTimes);
       */
 
-       let Ao5Length = 5, Ao12Length = 12;
+      let Ao5Length = 5, Ao12Length = 12;
       let rawTimes = [
         51.14,33.22,56.12,29.40,48.70,52.02,41.64,33.82,43.05,47.24,
         34.88,36.55,36.29,37.63,38.03,51.68,44.00,40.82,43.99,40.37,
@@ -155,7 +158,7 @@
           datasets: [{
             lineTension: 0.15,
             label: 'Solve Times',
-            borderColor: 'rgb(235, 106, 100)',
+            borderColor: '#353b48',
             borderWidth: 5,
             data: rawTimes,
           },
@@ -163,7 +166,7 @@
            {
             lineTension: 0.15,
             label: 'Ao5',
-            borderColor: 'rgb(153, 204, 255)',
+            borderColor: '#B33771',
             borderWidth: 5,
             data: Ao5,
           },
@@ -171,7 +174,7 @@
            {
             lineTension: 0.15,
             label: 'Ao12',
-            borderColor: 'rgb(120, 180, 120)',
+            borderColor: '#009432',
             borderWidth: 5,
             data: Ao12,
           }
@@ -185,119 +188,6 @@
           }
         }
       });
-
-       function getScramble(){
-        let scramble= " ";
-        let randomScrambleLength = Math.floor(Math.random() * 5)+10;
-        console.log(randomScrambleLength);
-        let lastMove = -13;
-        let lol = 0;
-        //let duplicateCorrection = 0;
-        for(let i=0; i<randomScrambleLength+lol; i++) {
-          let tempScrambleMoveInt = Math.floor(Math.random()*17);
-          
-          if(tempScrambleMoveInt  == lastMove) {
-            tempScrambleMoveInt = 20;
-            lol  += 1;
-            console.log("Scramble int" + tempScrambleMoveInt);
-          }
-          //Some way to check if same move twice in a row
-          switch (tempScrambleMoveInt){
-            case 0: 
-              scramble = scramble + " U'",
-              lastMove = 0;
-              break;
-
-            case 1:
-              scramble = scramble + " U",
-              lastMove = 0;
-              break;
-
-            case 2:
-              scramble = scramble + " U2",
-              lastMove = 0;
-              break;
-
-            case 3: 
-            scramble = scramble + " B'",
-            lastMove = 1;
-            break;
-
-            case 4: scramble = scramble + " B",
-            lastMove = 1;
-            break;
-
-            case 5: scramble = scramble + " B2",
-            lastMove = 1;
-            break;
-
-            case 6: scramble = scramble + " F'";
-            lastMove = 2;
-            break;
-
-            case 7: scramble = scramble + " F";
-            lastMove = 2;
-            break;
-
-            case 8: scramble = scramble + " F2";
-            lastMove = 2;
-            break;
-
-            case 9: scramble = scramble + " L'";
-            lastMove = 3;
-            break;
-
-            case 10: scramble = scramble + " L";
-            lastMove = 3;
-            break;
-
-            case 11: scramble = scramble + " L2";
-            lastMove = 3;
-            break;
-
-            case 12: scramble = scramble + " R'";
-            lastMove = 4;
-            break;
-
-            case 13: scramble = scramble + " R";
-            lastMove = 4;
-            break;
-
-            case 14: scramble = scramble + " R2";
-            lastMove = 4;
-            break;
-
-            case 15: scramble = scramble + " D'";
-            lastMove = 5;
-            break;
-
-            case 16: scramble = scramble + " D";
-            lastMove = 5;
-            break;
-
-            case 17: scramble = scramble + " D2";
-            lastMove = 5;
-            break;
-
-            case 20:
-            break;
-          }
-
-           /*
-          if(tempScrambleMoveInt == lastMove) {
-            duplicateCorrection += 1;
-            console.log(duplicateCorrection);
-            break;
-          }
-          */
-        }
-
-         document.getElementById("changeScramble").innerHTML = scramble;
-      }
     </script>
-    <div id="changeScramble">
-      <h1></h1>
-    </div>
-    <button onClick="getScramble()", class="btn">New Scramble</button>
   </div>
 </body>

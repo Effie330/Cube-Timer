@@ -17,11 +17,32 @@
   <link rel="stylesheet" href="styles.css">
   <div></div>
     <script>
+      var timerRunning = false;
+
+      document.body.onkeyup = function(e){
+        if(timerRunning == false){
+          if(e.keyCode == 32){
+            let timeStart = Date.now();
+            timeRunning = true;
+          }
+        } else {
+          if(e.keyCode == 32){
+            let timeStop = Date.now();
+            timeRunning = false;
+          }
+        }
+      }
+      
+      var timeStart = Date.now();
+      //await onKe
+
+
+
       function getScramble(){
         let scramble= " ";
         
-        //Setting the scramble length from 10-15
-        let randomScrambleLength = Math.floor(Math.random() * 5)+10;
+        //Setting the scramble length from 15-20
+        let randomScrambleLength = Math.floor(Math.random() * 5)+15;
 
         let lastMove = -13;
         let duplicateCorrection = 0;
@@ -30,6 +51,7 @@
           //picking a random int between 0-17 corresponging to a move on the cube
           let tempScrambleMoveInt = Math.floor(Math.random()*17);
 
+          //checking if the current random move chosen is the same face as the last move
           if(Math.floor(tempScrambleMoveInt/3)  == lastMove) {
             console.log("Next move would've been: " + tempScrambleMoveInt);
             tempScrambleMoveInt = 20;
@@ -113,18 +135,7 @@
             case 17: scramble = scramble + " D2";
               lastMove = 5;
             break;
-          
-            case 20: //scramble = scramble + " MISSED";
-            break;
           }
-        
-           /*
-          if(tempScrambleMoveInt == lastMove) {
-            duplicateCorrection += 1;
-            console.log(duplicateCorrection);
-            break;
-          }
-          */
         }
         document.getElementById("changeScramble").innerHTML = scramble;
       }
@@ -134,7 +145,7 @@
         <h1></h1>
       </div>
       <div>
-        <button onClick="getScramble()", class="btn", class="align-center">New Scramble</button>
+        <button onClick="getScramble()", class="btn">New Scramble</button>
       </div>
     </div>
   </div>

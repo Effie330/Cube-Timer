@@ -1,6 +1,9 @@
-electron port
-write times to text files
-versoin numbers
-tabs
-css implementation
-packages
+-timer activated by space bar
+-write times to text file
+-update graph from text file
+-List all solve times in the solve times tab
+-add way in app to delete times
+-styling for timer tab
+-seperate timers and graphs for different events
+-logo and wording for which event
+-drop down to select event

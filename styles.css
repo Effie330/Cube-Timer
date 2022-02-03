@@ -6,15 +6,16 @@
 }
 .btn{
   padding: 15px;
-  background-color: #2980b9;
-  color: rgb(203, 203, 248);
+  background-color: #70a1ff;
+  color: rgb(38, 38, 109);
   border-radius: 12px;
-  border: 3px solid #2472a7;
+  border: 3px solid #1e90ff;
   align-items: center;
 }
 
 body {
-  background-color: #3498db;
+  /*background-color: #3498db;*/
+  background-image: linear-gradient(#70a1ff, #1e90ff);
 }
 
 header {
@@ -35,21 +36,22 @@ header {
 }
 
 .navLinks li a {
-  color: rgb(203, 203, 248);
-  background-color: #2980b9;
-  border: 3px solid #2472a7;
+  color: rgb(38, 38, 109);
+  background-color: #70a1ff;
+  border: 3px solid #1e90ff;
   border-radius: 5px;
   padding: 10px 10px;
   transition: all 0.3s ease 0s;
 }
 
 .navLinks li a:hover {
-  border-color: #2980b9;
+  border-color: #1771ca;
+  background-color: #1e90ff;
 }
 
 button {
   padding: 9px 25px;
-  background-color: rgba(0, 136, 160, 1);
+  background-color: #70a1ff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -57,10 +59,15 @@ button {
 }
 
 button:hover {
-  background-color: rgba(0, 136, 160, 0.8);
+  border-color: #1771ca;
+  background-color: #1e90ff;
 }
 
 a:link { text-decoration: none; }
 a:visited { text-decoration: none; }
 a:hover { text-decoration: none; }
 a:active { text-decoration: none; }
+
+.gradient {
+  background-image: linear-gradient(red, blue);
+}
