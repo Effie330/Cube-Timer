@@ -7,3 +7,5 @@
 -seperate timers and graphs for different events
 -logo and wording for which event
 -drop down to select event
+-Track PBs, show in stats tab
+-fix R L R type scramble moves

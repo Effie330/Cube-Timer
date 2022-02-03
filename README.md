@@ -15,3 +15,4 @@ This project aims to replicate the Android app Twisty Timer. An app meant for sp
 * Used the several functions for the first time
 * Source control and uploading to git
 * Got more familiar with Chart.js
+* First time diving deep into CSS customization

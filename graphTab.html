@@ -7,6 +7,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <head class="font-bold">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cousine&display=swap');
+  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <title>Your Solve Times</title>
@@ -14,7 +17,7 @@
   <header>
     <nav>
       <ul class="navLinks">
-        <li><a href="graphTab.html" target="_blank">Graph</a></li>
+        <li><a href="graphTab.html">Graph</a></li>
         <li><a href="timerTab.html">Timer</a></li>
         <li><a href="solveTimesTab.html">Solve Times</a></li>
       </ul>
@@ -162,16 +165,14 @@
             borderWidth: 5,
             data: rawTimes,
           },
-
-           {
+          {
             lineTension: 0.15,
             label: 'Ao5',
             borderColor: '#B33771',
             borderWidth: 5,
             data: Ao5,
           },
-
-           {
+          {
             lineTension: 0.15,
             label: 'Ao12',
             borderColor: '#009432',
@@ -181,9 +182,57 @@
           ]
         },
         options: {
+          plugins: {
+            legend: {
+              labels: {
+                color: 'black'
+              }
+            }
+          },
           scales: {
             yAxis: {
-              min: 0
+              ticks: {
+                color: 'black'
+              },
+              title: {
+                display: true,
+                text: 'Solve Time',
+                color: '#085CB1',
+                font: {
+                  family: 'system-ui',
+                  size: 20,
+                  weight: 'bold',
+                  lineHeight: 1.2,
+                },
+                padding: {top: 20, left: 0, right: 0, bottom: 0}
+              },
+              min: 0,
+              grid: {
+                strokeWeight: '1',
+                color: '#000000',
+                borderColor: 'black',
+              }
+            },
+            xAxis: {
+              ticks: {
+                color: 'black'
+              },
+              title: {
+                display: true,
+                text: 'Solve Number',
+                color: '#014E9C',
+                font: {
+                  family: 'system-ui',
+                  size: 20,
+                  weight: 'bold',
+                  lineHeight: 1.2,
+                },
+                padding: {top: 20, left: 0, right: 0, bottom: 0}
+              },
+              grid: {
+                color: 'rgba(0,0,0,255)',
+                borderColor: 'black',
+              }
             }
           }
         }
