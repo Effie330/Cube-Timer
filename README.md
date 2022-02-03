@@ -12,6 +12,6 @@ This project aims to replicate the Android app Twisty Timer. An app meant for sp
 * Graph the raw solve times and both averages using Chart.js
 
 # What I learned from this project
-* Used the splice function for the first time
+* Used the several functions for the first time
 * Source control and uploading to git
 * Got more familiar with Chart.js

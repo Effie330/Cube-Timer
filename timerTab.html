@@ -1,0 +1,139 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Timer</title>
+  <link rel="stylesheet" href="styles.css">
+  <nav>
+    <ul>
+      <li><a href="graphTab.html">Graph</a></li>
+      <li><a href="timerTab.html">Timer</a></li>
+      <li><a href="solveTimesTab.html">Solve Times</a></li>
+    </ul>
+  </nav>
+</head>
+<body>
+  <link rel="stylesheet" href="styles.css">
+  <div></div>
+    <script>
+      function getScramble(){
+        let scramble= " ";
+        
+        //Setting the scramble length from 10-15
+        let randomScrambleLength = Math.floor(Math.random() * 5)+10;
+
+        let lastMove = -13;
+        let duplicateCorrection = 0;
+        for(let i=0; i<randomScrambleLength+duplicateCorrection; i++) {
+
+          //picking a random int between 0-17 corresponging to a move on the cube
+          let tempScrambleMoveInt = Math.floor(Math.random()*17);
+
+          if(Math.floor(tempScrambleMoveInt/3)  == lastMove) {
+            console.log("Next move would've been: " + tempScrambleMoveInt);
+            tempScrambleMoveInt = 20;
+            duplicateCorrection  += 1;
+          }
+
+          //Switch case for each move then adding that move to the scramble string
+          switch (tempScrambleMoveInt){
+            case 0: 
+              scramble = scramble + " U'";
+              lastMove = 0;
+            break;
+          
+            case 1:
+              scramble = scramble + " U";
+              lastMove = 0;
+            break;
+          
+            case 2:
+              scramble = scramble + " U2";
+              lastMove = 0;
+            break;
+          
+            case 3: 
+              scramble = scramble + " B'";
+              lastMove = 1;
+            break;
+          
+            case 4: scramble = scramble + " B";
+              lastMove = 1;
+            break;
+          
+            case 5: scramble = scramble + " B2";
+              lastMove = 1;
+            break;
+          
+            case 6: scramble = scramble + " F'";
+              lastMove = 2;
+            break;
+          
+            case 7: scramble = scramble + " F";
+              lastMove = 2;
+            break;
+          
+            case 8: scramble = scramble + " F2";
+              lastMove = 2;
+            break;
+          
+            case 9: scramble = scramble + " L'";
+              lastMove = 3;
+            break;
+          
+            case 10: scramble = scramble + " L";
+              lastMove = 3;
+            break;
+          
+            case 11: scramble = scramble + " L2";
+              lastMove = 3;
+            break;
+          
+            case 12: scramble = scramble + " R'";
+              lastMove = 4;
+            break;
+          
+            case 13: scramble = scramble + " R";
+              lastMove = 4;
+            break;
+          
+            case 14: scramble = scramble + " R2";
+              lastMove = 4;
+            break;
+          
+            case 15: scramble = scramble + " D'";
+              lastMove = 5;
+            break;
+          
+            case 16: scramble = scramble + " D";
+              lastMove = 5;
+            break;
+          
+            case 17: scramble = scramble + " D2";
+              lastMove = 5;
+            break;
+          
+            case 20: //scramble = scramble + " MISSED";
+            break;
+          }
+        
+           /*
+          if(tempScrambleMoveInt == lastMove) {
+            duplicateCorrection += 1;
+            console.log(duplicateCorrection);
+            break;
+          }
+          */
+        }
+        document.getElementById("changeScramble").innerHTML = scramble;
+      }
+    </script>
+    <div>
+      <div id="changeScramble">
+        <h1></h1>
+      </div>
+      <div>
+        <button onClick="getScramble()", class="btn", class="align-center">New Scramble</button>
+      </div>
+    </div>
+  </div>
+</body>
