@@ -1,5 +1,3 @@
--timer activated by space bar
--write times to text file
 -update graph from text file
 -List all solve times in the solve times tab
 -add way in app to delete times

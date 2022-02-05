@@ -9,15 +9,26 @@
   --navy-text: #26266D;
 }
 
+.scrambleText {
+  text-align: center;
+  color: var(--navy-text);
+}
 .btn{
-  padding: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 100px;
+  padding-right: 100px;
   background-color: var(--blue-1);
   color: var(--navy-text);
   border-radius: 12px;
   border: 3px solid var(--blue-2);
-  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-
+.newScrambleButton{
+  display: flex;
+  justify-content: center;
+}
 body {
   background-image: linear-gradient(var(--blue-1), var(--blue-3));
 }

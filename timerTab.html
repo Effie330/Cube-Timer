@@ -1,8 +1,8 @@
+<link rel="stylesheet" href="styles.css">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width initial-scale=1">
   <title>Timer</title>
-  <link rel="stylesheet" href="styles.css">
   <header>
     <nav>
       <ul class="navLinks">
@@ -15,38 +15,42 @@
 </head>
 <body>
   <link rel="stylesheet" href="styles.css">
-  <div></div>
     <script>
-      var timerRunning = false;
+      const fs = require('fs');
+      var timeRunning = false,timeStart = 0, timeStop = 0, solveTime = 0;
 
       document.body.onkeyup = function(e){
-        if(timerRunning == false){
-          if(e.keyCode == 32){
-            let timeStart = Date.now();
-            timeRunning = true;
-          }
-        } else {
-          if(e.keyCode == 32){
-            let timeStop = Date.now();
-            timeRunning = false;
-          }
+        if((e.keyCode == 32)&&(timeRunning == false)){
+          timeStart = Date.now();
+          timeRunning = true;
+          document.getElementById("timerText").innerHTML = "Timing";
+        }else if((e.keyCode == 32)&&(timeRunning == true)){
+          timeStop = Date.now();
+          timeRunning = false;
+          solveTime = (timeStop - timeStart) / 1000;
+          document.getElementById("timerText").innerHTML = solveTime;
+          
+          fs.writeFile('solveTimes.txt', solveTime.toString(), err => {
+            if(err){
+              console.error(err);
+              return;
+            }
+          });
+          
         }
-      }
+      };
       
-      var timeStart = Date.now();
-      //await onKe
 
-
-
+      
       function getScramble(){
         let scramble= " ";
         
         //Setting the scramble length from 15-20
-        let randomScrambleLength = Math.floor(Math.random() * 5)+15;
+        let scrambleLength = Math.floor(Math.random()*6)+15;
 
         let lastMove = -13, twoMovesAgo = -13;
         let duplicateCorrection = 0;
-        for(let i=0; i<randomScrambleLength+duplicateCorrection; i++) {
+        for(let i=0; i<scrambleLength+duplicateCorrection; i++) {
 
           //picking a random int between 0-17 corresponging to a move on the cube
           let tempScrambleMoveInt = Math.floor(Math.random()*17);
@@ -168,16 +172,15 @@
             break;
           }
         }
-        document.getElementById("changeScramble").innerHTML = scramble;
+        document.getElementById("scrambleTextZone").innerHTML = scramble;
       }
     </script>
     <div>
-      <div id="changeScramble">
-        <h1></h1>
-      </div>
-      <div>
+      <h1 id="scrambleTextZone" class="scrambleText"style="justify-content: center;"></h1>
+      <div class="newScrambleButton">
         <button onClick="getScramble()", class="btn">New Scramble</button>
       </div>
+      <h1 id="timerText"class="scrambleText"> </h1>
     </div>
   </div>
 </body>
