@@ -32,7 +32,6 @@ document.body.onkeyup = function(e){
     fs.writeFile('solveTimes.txt', solveTimes.toString(), err => {
       if(err){
         console.error(err);
-        return;
       }
     });
     

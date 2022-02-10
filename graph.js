@@ -9,18 +9,18 @@ rawTimes = rawTimesTemp.map(Number);
 
 const Ao5Length = 5, Ao12Length = 12;
 let Ao5 = [null,null,null,null];
-let Ao12 = [null,null,null,null,null,null,null,null,null,null,null,null];
+let Ao12 = [null,null,null,null,null,null,null,null,null,null,null];
 let xLabels = [];
 
 //CALCULATING AVERAGE OF 5
 for(let i = 0;i<rawTimes.length;i++) {
   let rolling5Average;
-  xLabels.push(i);
+  xLabels.push(i+1);
   //CREATING TEMPORARY ARRAY TO ISOLATE THE 5 SOLVE TIMES
   if(i >= Ao5Length - 1){
     rolling5Average = 0;
     let tempAo5Array = [];
-     for(let b = 0;b<Ao5Length;b++){
+    for(let b = 0;b<Ao5Length;b++){
       tempAo5Array.push(rawTimes[i-b]);
     }
 
@@ -46,7 +46,7 @@ for(let i = 0;i<rawTimes.length;i++) {
         tempAo5Array[a] = 0;
       }
     }
-    console.log(tempAo5Array);
+
     //FINALLY CALCULATING AND GRAPHING THE AVERAGE OF THE PAST 5 TERMS
     let tempAverageSum = 0.0;
     for(let c = 0;c<tempAo5Array.length;c++){
@@ -62,17 +62,20 @@ for(let i = 0;i<rawTimes.length;i++) {
 //CALCULATING AVERAGE OF 12
 for(let i = 0;i<rawTimes.length;i++) {
   let rolling12Average;
-   //CREATING TEMPORARY ARRAY TO ISOLATE THE 12 SOLVE TIMES
-  let tempAo12Array = [];
-  if(i>Ao12Length-4){
+   //CREATING TEMPORARY ARRAY TO ISOLATE THE 12 SOLVE TIME
+  if(i>=Ao12Length-1){
+    let tempAo12Array = [];
     for(let b = 0;b<Ao12Length;b++){
       tempAo12Array.push(rawTimes[i-b]);
     }
+
     let tempFastest = 99;
     let tempSlowest = 0;
     let tempSecondFastest = 99;
     let tempSecondSlowest = 0;
+
     //FINDING WHICH FOUR TIMES NEED TO BE REMOVED
+    //FIRST TWO TIMES
     for(let num = 0; num < Ao12Length-1; num++){
       if (tempAo12Array[num] < tempFastest) {
         tempFastest = tempAo12Array[num];
@@ -80,6 +83,7 @@ for(let i = 0;i<rawTimes.length;i++) {
         tempSlowest = tempAo12Array[num];
       }
     }
+    //SECOND TWO TIMES
     for(let num = 0; num < Ao12Length-1; num++){
       if ((tempAo12Array[num] < tempSecondFastest)&&(tempAo12Array[num] != tempFastest)) {
         tempSecondFastest = tempAo12Array[num];
@@ -87,25 +91,27 @@ for(let i = 0;i<rawTimes.length;i++) {
         tempSecondSlowest = tempAo12Array[num];
       }
     }
+
     //REMOVING THE SLOWEST AND FASTEST TIMES FROM THE TEMP ARRAY
-    for(let element of tempAo12Array){
-      if(tempAo12Array[element] == tempSlowest) {
-        tempAo12Array[element] = 0;
+    for(let b = 0; b<tempAo12Array.length;b++){
+      if(tempAo12Array[b] == tempSlowest) {
+        tempAo12Array[b] = 0;
       }
-      if(tempAo12Array[element] == tempFastest) {
-        tempAo12Array[element] = 0;
+      if(tempAo12Array[b] == tempFastest) {
+        tempAo12Array[b] = 0;
       }
-      if(tempAo12Array[element] == tempSecondFastest) {
-        tempAo12Array[element] = 0;
+      if(tempAo12Array[b] == tempSecondFastest) {
+        tempAo12Array[b] = 0;
       }
-      if(tempAo12Array[element] == tempSecondSlowest) {
-        tempAo12Array[element] = 0;
+      if(tempAo12Array[b] == tempSecondSlowest) {
+        tempAo12Array[b] = 0;
       }
     }
+
     //FINALLY CALCULATING AND GRAPHING THE AVERAGE OF THE PAST 12 TERMS
-    let tempAverageSum = 0;
-    for(let element of tempAo12Array){
-      if(tempAo12Array[element] != 0) tempAverageSum += tempAo12Array[element];
+    let tempAverageSum = 0.0;
+    for(let c = 0; c<tempAo12Array.length;c++){
+      tempAverageSum += tempAo12Array[c];
     }
     rolling12Average = tempAverageSum / 8;
     Ao12.push(rolling12Average);

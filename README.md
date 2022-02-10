@@ -1,7 +1,8 @@
 # Cube-Timer
 This project aims to replicate the Android app Twisty Timer. An app meant for speedcubers to time, and track their solves all in one place.
 
-![test](./readme-example-photo.png)
+![Graph Photo](./pictures/readme-graph-pic.png)
+![Timer Photo](./pictures/readme-timer-pic.png)
 
 # Objectives
 * Generate randomized scrambles
