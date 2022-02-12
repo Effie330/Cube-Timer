@@ -157,7 +157,8 @@ let CubeTimer = new Chart(context, {
     scales: {
       yAxis: {
         ticks: {
-          color: 'black'
+          color: 'black',
+          stepSize: 5
         },
         title: {
           display: true,
@@ -173,7 +174,6 @@ let CubeTimer = new Chart(context, {
         },
         min: 0,
         grid: {
-          strokeWeight: '1',
           color: '#000000',
           borderColor: 'black',
         }
@@ -194,10 +194,7 @@ let CubeTimer = new Chart(context, {
           },
           padding: {top: 20, left: 0, right: 0, bottom: 0}
         },
-        grid: {
-          color: 'rgba(0,0,0,255)',
-          borderColor: 'black',
-        }
+        grid: { display: false,}
       }
     }
   }

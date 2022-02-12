@@ -13,7 +13,7 @@
     </nav>
   </header>
 </head>
-<body>
+<body onload="javascript:getScramble()">
   <link rel="stylesheet" href="styles.css">
     <script src="timer.js"></script>
     <div>
@@ -21,7 +21,7 @@
       <div class="newScrambleButton">
         <button onClick="getScramble()", class="btn">New Scramble</button>
       </div>
-      <h1 id="timerText"class="scrambleText"> </h1>
+      <h1 id="timerText"class="scrambleText timeText"> </h1>
     </div>
   </div>
 </body>
