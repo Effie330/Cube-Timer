@@ -3,8 +3,8 @@
 *{
   font-family: 'Cousine', monospace;
   box-sizing: border-box;
-  --lg: #f0ffff;
-  --lg2: #cee0e0;
+  --lg: #ffffff;
+  --lg2: #d4e6e6;
   --lg3: #adc5c5;
   --lg4: #94afaf;
   --lg5: #809797;
@@ -22,35 +22,39 @@
   font-size: 100px;
 }
 .solvesContainer{
-  display:flex;
+  display:grid;
+  grid-template-columns: auto auto auto auto auto;
 }
-.solvesContainer div{
-  border: 10px;
-  border-color: var(--navy-text);
+.solveTimesGridItems{
+  background-color: var(--lg2);
+  text-align: center;
+  margin: 6px;
   padding: 15px;
+  border-radius: 12px;
+  color: var(--navy-text);
+  font-size: 20px;
+  border: 5px solid var(--blue-3);
+  box-shadow: inset 5px 5px 5px var(--lg);
+  transition: 0.5s;
 }
-.solvesColumn1{
-  flex:1;
-}
-.solvesColumn2{
-  flex:1;
-}
-.solvesColumn3{
-  flex:1;
+.solveTimesGridItems:hover{
+  box-shadow: inset 5px 5px 5px var(--lg2);
+  background-color: var(--lg3);
 }
 .btn{
-  padding-top: 25px;
-  padding-bottom: 25px;
-  padding-left: 125px;
-  padding-right: 125px;
+  padding: 25px 125px 25px 125px;
+  margin: 10px;
+  width: 540px;
+  white-space: nowrap;
   background-color: var(--lg2);
   color: var(--navy-text);
   border-radius: 12px;
   box-shadow: inset 8px 8px 5px var(--lg), inset -8px -8px 5px var(--lg3);
-  border: 3px solid var(--blue-3);
+  border: 5px solid var(--blue-3);
   justify-content: center;
   text-align: center;
   font-size: 40px;
+  transition: 0.5s;
 }
 .btn:hover{
   background-color: var(--lg3);
