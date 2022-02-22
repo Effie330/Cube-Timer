@@ -12,16 +12,20 @@ fs.readFile('solveTimes.txt', 'utf8', (err, data) => {
   }
 })
 
+let fastestTime = 999;
 
 function drawTimeDivs() {
-  console.log("lmoa");
   for(let i=0;i<solveTimes.length;i++){
-    
     const newDiv = document.createElement("div");
     newDiv.classList.add("solveTimesGridItems");
     newDiv.setAttribute('id',i);
     newDiv.innerHTML = solveTimes[i];
+    if(solveTimes[i]<fastestTime){fastestTime=solveTimes[i];}
     
     document.getElementById("solvesGridHeader").appendChild(newDiv);
   }
+  document.getElementById("overallBest").innerHTML = fastestTime;
+  document.getElementById("overallCount").innerHTML = solveTimes.length;
+  document.getElementById("Ao5Count").innerHTML = solveTimes.length-4;
+  document.getElementById("Ao12Count").innerHTML = solveTimes.length-11;
 }

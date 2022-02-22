@@ -13,6 +13,26 @@
   --blue-3: #1061da;
   --navy-text: #26266D;
 }
+#solveStatsTable{
+  border-spacing:0;
+  width:400px;
+  text-align: left;
+}
+.statsTable{
+  border: 5px solid var(--navy-text);
+  border-radius: 15px;
+}
+.statsTable th{padding: 15px;}
+.statsTable td{padding: 15px;}
+
+.statsTable th:first-child{border-radius: 10px 0 0 0;}
+.statsTable th:last-child {border-radius: 0 10px 0 0;}
+.statsTable tr:last-child td:first-child {border-radius: 0 0 0 10px;}
+.statsTable tr:last-child td:last-child {border-radius: 0 0 10px 0;}
+
+.statsTableHeader{background-color: var(--lg5);}
+.statsTableBestTimes{background-color: var(--lg2);}
+.statsTableSolveCount{background-color: var(--lg3);}
 .scrambleText{
   text-align: center;
   font-size: 50px;
@@ -33,6 +53,7 @@
   border-radius: 12px;
   color: var(--navy-text);
   font-size: 20px;
+  font-weight: 500;
   border: 5px solid var(--blue-3);
   box-shadow: inset 5px 5px 5px var(--lg);
   transition: 0.5s;

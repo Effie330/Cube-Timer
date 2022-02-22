@@ -14,6 +14,26 @@
   </header>
 </head>
 <body>
-  <script src="solveTimes.js"></script>
+  <table class="statsTable" id="solveStatsTable">
+    <tr class="statsTableHeader">
+      <th>Statistic</th>
+      <th>Overall</th>
+      <th>Ao5</th>
+      <th>Ao12</th>
+    </tr>
+    <tr class="statsTableBestTimes">
+      <td>Best</td>
+      <td id="overallBest"></td>
+      <td id="Ao5Best"></td>
+      <td id="Ao12Best"></td>
+    </tr>
+    <tr class="statsTableSolveCount">
+      <td>Solve Count</td>
+      <td id="overallCount"></td>
+      <td id="Ao5Count"></td>
+      <td id="Ao12Count"></td>
+    </tr>
+  </table>
   <div class="solvesContainer" id="solvesGridHeader"></div>
+  <script src="solveTimes.js"></script>
 </body>
