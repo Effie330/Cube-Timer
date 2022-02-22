@@ -12,30 +12,36 @@ fs.readFile('solveTimes.txt', 'utf8', (err, data) => {
   }
 })
 
+function timerCheck(){
+  if(!timeRunning){startTimer();}
+  else{stopTimer();}
+}
+//If the timer isn't running, start time
+function startTimer(){
+  timeStart = Date.now();
+  timeRunning = true;
+  document.getElementById("timerText").innerHTML = "Timing";
+}
+//If timer is running, stop time, log the time
+function stopTimer(){
+  timeStop = Date.now();
+  timeRunning = false;
+  recentSolve = (timeStop - timeStart) / 1000;
+  solveTimes.push(recentSolve);
+  document.getElementById("timerText").innerHTML = recentSolve;
+  getScramble();
+  //Writing the time to the solveTimes save file
+  fs.writeFile('solveTimes.txt', solveTimes.toString(), err => {
+    if(err){
+      console.error(err);
+    }
+  });
+}
 //Detecting when the spacebar is pressed
 document.body.onkeyup = function(e){
-  
-  //If the timer isn't running, start time
-  if((e.keyCode == 32)&&(timeRunning == false)){
-    timeStart = Date.now();
-    timeRunning = true;
-    document.getElementById("timerText").innerHTML = "Timing";
-    //If timer is running, stop time, log the time
-  }else if((e.keyCode == 32)&&(timeRunning == true)){
-    timeStop = Date.now();
-    timeRunning = false;
-    recentSolve = (timeStop - timeStart) / 1000;
-    solveTimes.push(recentSolve);
-    document.getElementById("timerText").innerHTML = recentSolve;
-    getScramble();
-    //Writing the time to the solveTimes save file
-    fs.writeFile('solveTimes.txt', solveTimes.toString(), err => {
-      if(err){
-        console.error(err);
-      }
-    });
-    
-  }
+  //Calling stop and start time when space bar pressed.
+  if((e.keyCode == 32) && !timeRunning){startTimer();}
+  else if((e.keyCode == 32)){stopTimer();}
 };
 
 

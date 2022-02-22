@@ -3,6 +3,11 @@
 *{
   font-family: 'Cousine', monospace;
   box-sizing: border-box;
+  --lg: #f0ffff;
+  --lg2: #cee0e0;
+  --lg3: #adc5c5;
+  --lg4: #94afaf;
+  --lg5: #809797;
   --blue-1: #70a1ff;
   --blue-2: #1e90ff;
   --blue-3: #1061da;
@@ -38,15 +43,24 @@
   padding-bottom: 25px;
   padding-left: 125px;
   padding-right: 125px;
-  background-color: var(--blue-1);
+  background-color: var(--lg2);
   color: var(--navy-text);
   border-radius: 12px;
-  border: 3px solid var(--blue-2);
+  box-shadow: inset 8px 8px 5px var(--lg), inset -8px -8px 5px var(--lg3);
+  border: 3px solid var(--blue-3);
   justify-content: center;
   text-align: center;
   font-size: 40px;
 }
-.newScrambleButton{
+.btn:hover{
+  background-color: var(--lg3);
+  box-shadow: inset 8px 8px 5px var(--lg2), inset -8px -8px 5px var(--lg4);
+}
+.btn:active{
+  background-color: var(--lg4);
+  box-shadow: inset 8px 8px 5px var(--lg5), inset -8px -8px 5px var(--lg5);
+}
+.timerButtons{
   display: flex;
   justify-content: center;
 }
