@@ -1,9 +1,11 @@
--List all solve times in the solve times tab
 -add way in app to delete times
 -styling for timer tab
 -seperate timers and graphs for different events
 -logo and wording for which event
 -drop down to select event
 -Track PBs, show in stats tab
+
+-save Ao5 Times and Ao12 to file
+-read file to find best times
 
 -once design set, change github pics

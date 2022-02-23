@@ -53,11 +53,14 @@ for(let i = 0;i<rawTimes.length;i++) {
       tempAverageSum += tempAo5Array[c];
     }
     rolling5Average = tempAverageSum / 3;
-    Ao5.push(rolling5Average);
+    Ao5.push(rolling5Average.toFixed(2));
   }
-  
 }
-
+fs.writeFile('Ao5Times.txt', Ao5.toString(), err => {
+  if(err){
+    console.error(err);
+  }
+});
 
 //CALCULATING AVERAGE OF 12
 for(let i = 0;i<rawTimes.length;i++) {
@@ -114,9 +117,14 @@ for(let i = 0;i<rawTimes.length;i++) {
       tempAverageSum += tempAo12Array[c];
     }
     rolling12Average = tempAverageSum / 8;
-    Ao12.push(rolling12Average);
+    Ao12.push(rolling12Average.toFixed(2));
   }
 }
+fs.writeFile('Ao12Times.txt', Ao12.toString(), err => {
+  if(err){
+    console.error(err);
+  }
+});
 
 let context = document.getElementById('CubeTimer').getContext('2d');
 let CubeTimer = new Chart(context, {

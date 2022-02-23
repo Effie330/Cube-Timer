@@ -2,13 +2,13 @@
   // Use IntelliSense to learn about possible attributes.
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.16",
+  "version": "0.2.17",
   "configurations": [
     {
       "type": "pwa-chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
-      "url": "http://localhost:8080",
+      "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}"
     }
   ]

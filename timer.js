@@ -26,12 +26,12 @@ function startTimer(){
 function stopTimer(){
   timeStop = Date.now();
   timeRunning = false;
-  recentSolve = (timeStop - timeStart) / 1000;
+  recentSolve = ((timeStop - timeStart) / 1000).toFixed(2);
   solveTimes.push(recentSolve);
   document.getElementById("timerText").innerHTML = recentSolve;
   getScramble();
   //Writing the time to the solveTimes save file
-  fs.writeFile('solveTimes.txt', solveTimes.toString(), err => {
+  fs.writeFile('solveTimes.txt', solveTimes, err => {
     if(err){
       console.error(err);
     }
