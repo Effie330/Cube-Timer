@@ -1,27 +1,25 @@
-const fs = require('fs');
 var timeRunning = false,timeStart = 0, timeStop = 0, recentSolve = 0;
-var solveTimes = [];
-var solveTimeText = "";
 
-//Reading solveTimes file and splitting it into the solveTimes array
-fs.readFile('solveTimes.txt', 'utf8', (err, data) => {
-  solveTimeText = data;
-  solveTimes = solveTimeText.split(',');
-  if(err){
-    console.error(err);
+let solveTimes = [];
+for(let i = 0; i < localStorage.length; i++){
+  let getKey1 = "3xS-"+i;
+  if(localStorage.getItem(getKey1) != null){
+    solveTimes.push(localStorage.getItem(getKey1));  
   }
-})
+}
 
 function timerCheck(){
   if(!timeRunning){startTimer();}
   else{stopTimer();}
 }
+
 //If the timer isn't running, start time
 function startTimer(){
   timeStart = Date.now();
   timeRunning = true;
   document.getElementById("timerText").innerHTML = "Timing";
 }
+
 //If timer is running, stop time, log the time
 function stopTimer(){
   timeStop = Date.now();
@@ -30,20 +28,20 @@ function stopTimer(){
   solveTimes.push(recentSolve);
   document.getElementById("timerText").innerHTML = recentSolve;
   getScramble();
-  //Writing the time to the solveTimes save file
-  fs.writeFile('solveTimes.txt', solveTimes, err => {
-    if(err){
-      console.error(err);
-    }
-  });
+
+  //Writing the time to the localStorage
+  for(let i = 0;i< solveTimes.length;i++){
+    let setKey = "3xS-"+i;
+    localStorage.setItem(setKey,solveTimes[i]);
+  }
 }
+
 //Detecting when the spacebar is pressed
 document.body.onkeyup = function(e){
   //Calling stop and start time when space bar pressed.
   if((e.keyCode == 32) && !timeRunning){startTimer();}
   else if((e.keyCode == 32)){stopTimer();}
 };
-
 
 function getScramble(){
   let scramble= " ";

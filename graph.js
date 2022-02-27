@@ -1,11 +1,19 @@
+//Reading database and setting times to the array
+let rawTimes = [];
+for(let i = 0; i < localStorage.length; i++){
+  let getKey1 = "3xS-"+i;
+  if(localStorage.getItem(getKey1) != null){
+    rawTimes.push(localStorage.getItem(getKey1));  
+  }
+  
+}
 
-const fs = require('fs');
+//making sure the array is of floats not strings
+for(let i = 0; i<  rawTimes.length; i++){
+  rawTimes[i] = parseFloat(rawTimes[i]);
+}
 
-let rawTimesTemp = [], rawTimes = [];
-
-let rawTimesText = fs.readFileSync('solveTimes.txt',{encoding:'utf8', flag:'r'});
-rawTimesTemp = rawTimesText.split(',');
-rawTimes = rawTimesTemp.map(Number);
+let rawTimesTemp = [];
 
 const Ao5Length = 5, Ao12Length = 12;
 let Ao5 = [null,null,null,null];
@@ -23,7 +31,6 @@ for(let i = 0;i<rawTimes.length;i++) {
     for(let b = 0;b<Ao5Length;b++){
       tempAo5Array.push(rawTimes[i-b]);
     }
-
     let tempFastest = 99;
     let tempSlowest = 0;
 
@@ -36,7 +43,7 @@ for(let i = 0;i<rawTimes.length;i++) {
         tempSlowest = tempAo5Array[num];
       }
     }
-
+    
     //REMOVING THE SLOWEST AND FASTEST TIMES FROM THE TEMP ARRAY
     for(let a = 0;a<Ao5Length;a++){
       if(tempAo5Array[a] == tempSlowest){
@@ -52,16 +59,13 @@ for(let i = 0;i<rawTimes.length;i++) {
     for(let c = 0;c<tempAo5Array.length;c++){
       tempAverageSum += tempAo5Array[c];
     }
+  
     rolling5Average = tempAverageSum / 3;
     Ao5.push(rolling5Average.toFixed(2));
+
+    localStorage.setItem("3xA5-"+i,rolling5Average.toFixed(2));
   }
 }
-fs.writeFile('Ao5Times.txt', Ao5.toString(), err => {
-  if(err){
-    console.error(err);
-  }
-});
-
 //CALCULATING AVERAGE OF 12
 for(let i = 0;i<rawTimes.length;i++) {
   let rolling12Average;
@@ -118,13 +122,10 @@ for(let i = 0;i<rawTimes.length;i++) {
     }
     rolling12Average = tempAverageSum / 8;
     Ao12.push(rolling12Average.toFixed(2));
+
+    localStorage.setItem("3xA12-"+i,rolling12Average.toFixed(2));
   }
 }
-fs.writeFile('Ao12Times.txt', Ao12.toString(), err => {
-  if(err){
-    console.error(err);
-  }
-});
 
 let context = document.getElementById('CubeTimer').getContext('2d');
 let CubeTimer = new Chart(context, {
