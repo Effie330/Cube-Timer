@@ -26,7 +26,17 @@
 </head>
 <body>
   <div class="gradient"></div>
+  <label for="solveEvent" id="eventSelector">Event Select</label>
+  <select id="event" onchange="getSelectedValue()">
+    <option value="3x">3x3 Cube</option>
+    <option value="2x">2x2 Cube</option>
+    <option value="4x">4x4 Cube</option>
+    <option value="5x">5x5 Cube</option>
+    <option value="6x">6x6 Cube</option>
+    <option value="7x">7x7 Cube</option>
+    <option value="Mx">Megaminx</option>
+  </select>
   <canvas id="CubeTimer" class="chartjs-render-monitor"></canvas>
-  <script type="module" async src="graph.js"></script>
+  <script src="graph.js"></script>
   
 </body>

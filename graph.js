@@ -1,19 +1,27 @@
-//Reading database and setting times to the array
-let rawTimes = [];
-for(let i = 0; i < localStorage.length; i++){
-  let getKey1 = "3xS-"+i;
-  if(localStorage.getItem(getKey1) != null){
-    rawTimes.push(localStorage.getItem(getKey1));  
+let rawTimes = [], eventSelected = "3x";
+
+function getSelectedValue(){
+  let currentEventSelect;
+  currentEventSelect = document.getElementById('event');
+  eventSelected = currentEventSelect.value;
+
+  rawTimes = [];
+  for(let i = 0; i < localStorage.length; i++){
+    
+    let getKey1 = eventSelected+"S-"+i;
+    if(localStorage.getItem(getKey1) != null){
+      rawTimes.push(localStorage.getItem(getKey1));  
+    }
   }
   
 }
+
+getSelectedValue();
 
 //making sure the array is of floats not strings
 for(let i = 0; i<  rawTimes.length; i++){
   rawTimes[i] = parseFloat(rawTimes[i]);
 }
-
-let rawTimesTemp = [];
 
 const Ao5Length = 5, Ao12Length = 12;
 let Ao5 = [null,null,null,null];
@@ -126,7 +134,7 @@ for(let i = 0;i<rawTimes.length;i++) {
     localStorage.setItem("3xA12-"+i,rolling12Average.toFixed(2));
   }
 }
-
+let yAxismin = 30, tickStep = 2;
 let context = document.getElementById('CubeTimer').getContext('2d');
 let CubeTimer = new Chart(context, {
   type: 'line',
@@ -167,7 +175,7 @@ let CubeTimer = new Chart(context, {
       yAxis: {
         ticks: {
           color: 'black',
-          stepSize: 5
+          stepSize: tickStep,
         },
         title: {
           display: true,
@@ -181,7 +189,7 @@ let CubeTimer = new Chart(context, {
           },
           padding: {top: 20, left: 0, right: 0, bottom: 0}
         },
-        min: 0,
+        min: yAxismin,
         grid: {
           color: '#000000',
           borderColor: 'black',

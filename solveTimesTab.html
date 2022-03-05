@@ -14,6 +14,16 @@
   </header>
 </head>
 <body>
+  <label for="solveEvent" id="eventSelector">Event Select</label>
+  <select id="event" onchange="removeDivs()">
+    <option value="3x">3x3 Cube</option>
+    <option value="2x">2x2 Cube</option>
+    <option value="4x">4x4 Cube</option>
+    <option value="5x">5x5 Cube</option>
+    <option value="6x">6x6 Cube</option>
+    <option value="7x">7x7 Cube</option>
+    <option value="Mx">Megaminx</option>
+  </select>
   <table class="statsTable" id="solveStatsTable">
     <caption>Solve Statistics</caption>
     <tr class="statsTableHeader">
@@ -36,5 +46,5 @@
     </tr>
   </table>
   <div class="solvesContainer" id="solvesGridHeader"></div>
-  <script src="solveTimes.js" type="module"></script>
+  <script src="solveTimes.js"></script>
 </body>

@@ -1,12 +1,35 @@
 var timeRunning = false,timeStart = 0, timeStop = 0, recentSolve = 0;
 
-let solveTimes = [];
-for(let i = 0; i < localStorage.length; i++){
-  let getKey1 = "3xS-"+i;
-  if(localStorage.getItem(getKey1) != null){
-    solveTimes.push(localStorage.getItem(getKey1));  
+let solveTimes = [],eventSelected;
+window.onload = function() {
+  getSelectedValue();
+
+  for(let i = 0; i < localStorage.length; i++){
+    let getKey1 = eventSelected+"S-"+i;
+    if(localStorage.getItem(getKey1) != null){
+      solveTimes.push(localStorage.getItem(getKey1));  
+    }
+  }
+
+  getScramble();
+}
+
+
+function getSelectedValue(){
+  let currentEventSelect = document.getElementById('event');
+  eventSelected = currentEventSelect.value;
+  console.log(eventSelected);
+
+  solveTimes = [];
+  for(let i = 0; i < localStorage.length; i++){
+    
+    let getKey1 = eventSelected+"S-"+i;
+    if(localStorage.getItem(getKey1) != null){
+      solveTimes.push(localStorage.getItem(getKey1));  
+    }
   }
 }
+
 
 function timerCheck(){
   if(!timeRunning){startTimer();}
@@ -22,18 +45,17 @@ function startTimer(){
 
 //If timer is running, stop time, log the time
 function stopTimer(){
+  getSelectedValue();
   timeStop = Date.now();
   timeRunning = false;
   recentSolve = ((timeStop - timeStart) / 1000).toFixed(2);
   solveTimes.push(recentSolve);
   document.getElementById("timerText").innerHTML = recentSolve;
-  getScramble();
 
   //Writing the time to the localStorage
-  for(let i = 0;i< solveTimes.length;i++){
-    let setKey = "3xS-"+i;
-    localStorage.setItem(setKey,solveTimes[i]);
-  }
+  let setKey = eventSelected+"S-"+solveTimes.length;
+  localStorage.setItem(setKey,recentSolve);
+  getScramble();
 }
 
 //Detecting when the spacebar is pressed
@@ -43,11 +65,14 @@ document.body.onkeyup = function(e){
   else if((e.keyCode == 32)){stopTimer();}
 };
 
+
 function getScramble(){
   let scramble= " ";
-  
-  //Setting the scramble length from 15-20
-  let scrambleLength = Math.floor(Math.random()*6)+15;
+  let scrambleLengthFactor = 15;
+
+  if(eventSelected == "2x") { scrambleLengthFactor = 8;}
+  //Setting the scramble length from 0-6 + scramble factor
+  let scrambleLength = Math.floor(Math.random()*6)+scrambleLengthFactor;
   let lastMove = -13, twoMovesAgo = -13;
   let duplicateCorrection = 0;
   for(let i=0; i<scrambleLength+duplicateCorrection; i++) {
